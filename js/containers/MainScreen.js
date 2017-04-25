@@ -6,10 +6,9 @@ import {
   View,
 } from 'react-native';
 
-import Component from '../components/Component';
 import Button from '../components/Button';
 
-export default class MainScreen extends Component {
+export default class MainScreen extends React.Component {
   static navigationOptions = {
     title: 'Main',
   };

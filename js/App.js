@@ -12,7 +12,6 @@ import {
 import styles from './lib/styles';
 global.styles = styles;
 
-import Component from './components/Component';
 import MainScreen from './containers/MainScreen';
 import AlbumsScreen from './containers/AlbumsScreen';
 
@@ -36,7 +35,7 @@ const AppNavigator = StackNavigator({
   }
 });
 
-export default class App extends Component {
+export default class App extends React.Component {
 
   render() {
     return (
