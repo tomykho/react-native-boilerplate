@@ -13,27 +13,29 @@ import styles from './lib/styles';
 global.styles = styles;
 
 import MainScreen from './containers/MainScreen';
-import AlbumsScreen from './containers/AlbumsScreen';
+import AlbumListScreen from './containers/AlbumListScreen';
+import PhotoGridScreen from './containers/PhotoGridScreen';
 
-const AppNavigator = StackNavigator({
-  Main: {
-    screen: MainScreen,
-  },
-  Albums: {
-    path: 'albums',
-    screen: AlbumsScreen,
-  },
-}, {
-  navigationOptions: {
-    header: {
-      style: {
-      }
+const AppNavigator = StackNavigator(
+  {
+    Main: {
+      screen: MainScreen,
+    },
+    Albums: {
+      screen: AlbumListScreen,
+    },
+    Photos: {
+      screen: PhotoGridScreen,
     },
   },
-  cardStyle: {
-    backgroundColor: 'white'
+  {
+    navigationOptions: {
+    },
+    cardStyle: {
+      backgroundColor: 'white'
+    }
   }
-});
+);
 
 export default class App extends React.Component {
 

@@ -66,6 +66,13 @@ class Api {
 		});
 	}
 
+	async getAlbumPhotos(albumId) {
+		return this._fetch({
+			url: `albums/${albumId}/photos`,
+			method: 'GET'
+		});
+	}
+
 }
 
 // The singleton variable
