@@ -7,7 +7,6 @@ import {
   View,
   FlatList,
   Image,
-  Dimensions,
 } from 'react-native';
 
 import Button from '../components/Button';
@@ -29,7 +28,7 @@ export default class PhotoGridScreen extends React.Component {
     this.state = {
       refreshing: true,
       data: [],
-      size: 0
+      size: 0,
     };
   }
 
@@ -46,31 +45,29 @@ export default class PhotoGridScreen extends React.Component {
     return (
       <FlatList
         onLayout={this._handleLayout}
-        contentContainerStyle={styles.list}
         data={this.state.data}
         extraData={this.state}
         refreshing={this.state.refreshing}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
+        numColumns={7}
       />
     );
   }
 
   _renderItem = ({item}) => {
-    const { size } = this.state;
-    return <PhotoGridItem size={size} item={item} />;
+    return <PhotoGridItem size={this.state.size} item={item} />;
   }
 
   _keyExtractor = (item, index) => item.id;
 
   _handleLayout = event => {
     const { width, height } = event.nativeEvent.layout;
-    let size = 0;
-    if (width < height) {
-      size = width / 4;
-    } else {
-      size = width / 7;
+    let numColumns = 4;
+    if (width > height) {
+      numColumns = 7;
     }
+    const size = width / numColumns;
     this.setState({ size });
   }
 
@@ -93,11 +90,5 @@ class PhotoGridItem extends React.PureComponent {
 
 }
 
-const { width } = Dimensions.get('window');
-const ITEM_SIZE = width / 4;
 const styles = StyleSheet.create({
-  list: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  }
 });
