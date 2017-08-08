@@ -6,11 +6,9 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Text,
   FlatList,
 } from 'react-native';
-
-import Button from '../components/Button';
+import { Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text } from "native-base";
 import api from '../lib/api';
 
 export default class AlbumListScreen extends React.Component {
@@ -19,9 +17,21 @@ export default class AlbumListScreen extends React.Component {
     refreshing: boolean,
   };
 
-  static navigationOptions = {
-    title: 'Albums'
-  };
+  static navigationOptions = ({ navigation }) => ({
+    header: (
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.goBack()}>
+            <Icon name="arrow-back" />
+          </Button>
+        </Left>
+        <Body>
+          <Title>Albums</Title>
+        </Body>
+        <Right />
+      </Header>
+    )
+  });
 
   constructor() {
     super();
