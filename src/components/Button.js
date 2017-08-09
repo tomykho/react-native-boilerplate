@@ -9,9 +9,6 @@ import {
 } from 'react-native';
 
 export default class Button extends React.Component {
-  static navigationOptions = {
-    title: 'Main'
-  };
 
   render() {
     return (
