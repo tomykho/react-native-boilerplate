@@ -12,6 +12,7 @@ import {
 import { StyleProvider } from 'native-base';
 import getTheme from '../native-base-theme/components';
 import commonColor from '../native-base-theme/variables/commonColor';
+import { navigateOnce } from './lib/navigator';
 
 import MainScreen from './containers/MainScreen';
 import AlbumListScreen from './containers/AlbumListScreen';
@@ -37,6 +38,8 @@ const AppNavigator = StackNavigator(
     }
   }
 );
+
+AppNavigator.router.getStateForAction = navigateOnce(AppNavigator.router.getStateForAction);
 
 export default class App extends React.Component {
 
