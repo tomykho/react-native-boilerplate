@@ -5,46 +5,41 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import { Container, Body, Content, Header, Left, Right, Icon, Title, Button, Text } from "native-base";
+import { 
+  Header, 
+  Button,
+  Icon,
+} from "react-native-elements";
 
 export default class MainScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header>
-        <Left />
-        <Body>
-          <Title>Main</Title>
-        </Body>
-        <Right />
-      </Header>
+      <Header 
+        centerComponent={{ text: 'Main' }}
+      />
     )
   });
 
   render() {
     return (
-      <Container>
-        <Content padder
-          contentContainerStyle={styles.content}>
-          <Button
-            block
-            onPress={() => this.props.navigation.navigate('Profile', { name: 'Jane' })}>
-              <Text>Post</Text>
-          </Button>
-          <Button
-            style={{ marginTop: 12 }} 
-            block
-            onPress={() => this.props.navigation.navigate('Albums')}>
-              <Text>Albums</Text>
-          </Button>
-        </Content>
-      </Container>
+      <View style={styles.container}>
+        <Button
+          title="Post"
+          onPress={() => this.props.navigation.navigate('Profile', { name: 'Jane' })}>
+        </Button>
+        <Button
+          style={{ marginTop: 12 }} 
+          title="Albums"
+          onPress={() => this.props.navigation.navigate('Albums')}>
+        </Button>
+      </View>
     );
   }
 
 }
 
 const styles = StyleSheet.create({
-  content: {
+  container: {
     flex: 1,
     justifyContent: 'center',
   }

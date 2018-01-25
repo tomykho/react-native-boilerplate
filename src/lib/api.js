@@ -6,6 +6,7 @@ class Api {
 
 	constructor() {
 		this.BASE_URL = 'https://jsonplaceholder.typicode.com';
+		console.log(this.BASE_URL);
 	}
 
 	async _fetch(opts) {

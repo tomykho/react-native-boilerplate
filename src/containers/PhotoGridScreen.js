@@ -8,30 +8,19 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-
-import { Container, Header, Title, Left, Icon, Right, Button, Body, Content, Text } from "native-base";
+import { 
+  Header
+} from "react-native-elements";
 import api from '../lib/api';
 
 export default class PhotoGridScreen extends React.Component {
-  state: {
-    data: Array<Object>,
-    refreshing: boolean,
-    size: number,
-  };
 
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Photos ({navigation.state.params.album.id})</Title>
-        </Body>
-        <Right />
-      </Header>
+      <Header 
+        leftComponent={{ icon: 'arrow-back', onPress: () => navigation.goBack() }}
+        centerComponent={{ text: `Photos (${navigation.state.params.album.id})` }}
+      />
     )
   });
 
@@ -46,10 +35,14 @@ export default class PhotoGridScreen extends React.Component {
 
   componentDidMount() {
     const { album } = this.props.navigation.state.params;
-    api.getAlbumPhotos(album.id)
+    this.request = api.getAlbumPhotos(album.id)
       .then((data) => {
         this.setState({ refreshing: false, data });
       });
+  }
+
+  componentWillUnmount() {
+    this.request.cancel();
   }
 
   render() {

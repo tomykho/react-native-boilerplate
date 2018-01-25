@@ -9,9 +9,6 @@ import {
 import {
   StackNavigator,
 } from 'react-navigation';
-import { StyleProvider } from 'native-base';
-import getTheme from '../native-base-theme/components';
-import commonColor from '../native-base-theme/variables/commonColor';
 import { navigateOnce } from './lib/navigator';
 
 import MainScreen from './containers/MainScreen';
@@ -45,9 +42,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <StyleProvider style={getTheme(commonColor)}>
-        <AppNavigator />
-      </StyleProvider>
+      <AppNavigator />
     );
   }
 
