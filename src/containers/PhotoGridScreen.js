@@ -8,7 +8,7 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-import { 
+import {
   Header
 } from "react-native-elements";
 import api from '../lib/api';
@@ -17,7 +17,7 @@ export default class PhotoGridScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header 
+      <Header
         leftComponent={{ icon: 'arrow-back', onPress: () => navigation.goBack() }}
         centerComponent={{ text: `Photos (${navigation.state.params.album.id})` }}
       />
@@ -60,11 +60,11 @@ export default class PhotoGridScreen extends React.Component {
     );
   }
 
-  _renderItem = ({item}) => {
+  _renderItem = ({ item }) => {
     return <PhotoGridItem size={this.state.size} item={item} />;
   }
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item, index) => 'photo_' + item.id;
 
   _handleLayout = event => {
     const { width, height } = event.nativeEvent.layout;
@@ -83,9 +83,9 @@ class PhotoGridItem extends React.PureComponent {
   render() {
     const { item, size } = this.props;
     return (
-        <Image 
-          style={{ width: size, height: size }}
-          source={{ uri: item.url }} />
+      <Image
+        style={{ width: size, height: size }}
+        source={{ uri: item.url }} />
     );
   }
 

@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import { 
-  Header, 
+import {
+  Header,
   Text,
 } from "react-native-elements";
 import api from '../lib/api';
@@ -18,7 +18,7 @@ export default class AlbumListScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     header: (
-      <Header 
+      <Header
         leftComponent={{ icon: 'arrow-back', onPress: () => navigation.goBack() }}
         centerComponent={{ text: 'Albums' }}
       />
@@ -52,11 +52,11 @@ export default class AlbumListScreen extends React.Component {
     );
   }
 
-  _renderItem = ({item}) => (
+  _renderItem = ({ item }) => (
     <AlbumListItem item={item} onPressItem={this._onPressItem} />
   );
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item, index) => 'album_' + item.id;
 
   _onPressItem = (item) => {
     const { navigation } = this.props;
